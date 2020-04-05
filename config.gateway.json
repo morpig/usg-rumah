@@ -1,12 +1,12 @@
 {
-   "interfaces":{
-      "ethernet":{
-         "eth0":{
+   "interfaces": {
+      "ethernet": {
+         "eth0": {
             "mac":"e0:b9:e5:dd:f7:34",
             "address":[
                "dhcp"
             ],
-            "dhcp-options":{
+            "dhcp-options": {
                "client-option":[
                   "send dhcp-client-identifier 1:e0:b9:e5:dd:f7:34;",
                   "send vendor-class-identifier &quot;MSFT 5.0&quot;;"
@@ -15,111 +15,108 @@
          }
       }
    },
-   "firewall":{
-      "modify":{
-         "LOAD_BALANCE":{
+   "firewall": {
+      "modify": {
+         "LOAD_BALANCE": {
             "description":"LOAD_BALANCE",
-            "rule":{
-               "2496":{
+            "rule": {
+              "2496": {
+                 "action":"accept",
+                 "protocol":"all",
+                 "source": {
+                    "address":"10.0.0.4/32"
+                 }
+              },
+               "2497": {
                   "action":"accept",
                   "protocol":"all",
-                  "source":{
-                     "address":"10.0.0.4/32"
-                  },
-                  "destination":{
-                     "address":"10.0.0.0/8"
-                  }
-               },
-               "2497":{
-                  "action":"accept",
-                  "protocol":"all",
-                  "source":{
+                  "source": {
                      "address":"10.0.0.0/24"
                   },
-                  "destination":{
+                  "destination": {
                      "address":"10.0.0.0/8"
                   }
                },
-               "2498":{
+               "2498": {
                   "action":"modify",
-                  "modify":{
+                  "modify": {
                      "table":"7"
                   },
                   "protocol":"all",
-                  "source":{
+                  "source": {
                      "address":"10.0.0.0/24"
                   }
                },
-               "2499":{
+               "2499": {
                   "action":"accept",
                   "protocol":"all",
-                  "source":{
+                  "source": {
                      "address":"10.2.0.0/24"
                   },
-                  "destination":{
+                  "destination": {
                      "address":"10.0.0.0/8"
                   }
                },
-               "2500":{
+               "2500": {
                   "action":"modify",
-                  "modify":{
+                  "modify": {
                      "table":"5"
                   },
                   "protocol":"all",
-                  "source":{
+                  "source": {
                      "address":"10.2.0.0/24"
                   }
-               }
-            },
-            "2501":{
-               "action":"accept",
-               "protocol":"all",
-               "source":{
-                  "address":"10.3.0.0/24"
                },
-               "destination":{
-                  "address":"10.0.0.0/8"
-               }
-            },
-            "2502":{
-               "action":"modify",
-               "modify":{
-                  "table":"6"
+               "2501": {
+                  "action":"accept",
+                  "protocol":"all",
+                  "source": {
+                     "address":"10.3.0.0/24"
+                  },
+                  "destination": {
+                     "address":"10.0.0.0/8"
+                  }
                },
-               "protocol":"all",
-               "source":{
-                  "address":"10.3.0.0/24"
+               "2502": {
+                  "action":"modify",
+                  "modify": {
+                     "table":"6"
+                  },
+                  "protocol":"all",
+                  "source": {
+                     "address":"10.3.0.0/24"
+                  }
                }
             }
          }
       }
    },
-   "protocols":{
-      "static":{
-         "table":{
-            "5":{
-               "route":{
-                  "0.0.0.0/0":{
-                     "next-hop":{
+   "protocols": {
+      "static": {
+         "table": {
+            "5": {
+               "route": {
+                  "0.0.0.0/0": {
+                     "next-hop": {
                         "192.168.18.1":"''"
                      }
                   }
                }
             },
-            "6":{
-               "route":{
-                  "0.0.0.0/0":{
-                     "next-hop":{
-                        "66.96.234.120":"''"
+            "6": {
+               "route": {
+                  "0.0.0.0/0": {
+                     "next-hop": {
+                        "66.96.234.65":"''"
                      }
                   }
                }
             },
-            "7":{
-               "route":{
-                  "0.0.0.0/0":{
-                     "next-hop":{
-                        "66.96.234.120":"''"
+            "7": {
+               "route": {
+                  "0.0.0.0/0": {
+                     "next-hop": {
+                        "192.168.18.1":"''"
                      }
                   }
                }
