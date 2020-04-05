@@ -1,0 +1,62 @@
+{
+   "interfaces": {
+      "ethernet": {
+         "eth0": {
+            "mac":"e0:b9:e5:dd:f7:34",
+            "address": [
+              "dhcp"
+            ],
+            "dhcp-options": {
+              "client-option": [
+                "send dhcp-client-identifier 1:e0:b9:e5:dd:f7:34;",
+                "send vendor-class-identifier &quot;MSFT 5.0&quot;;"
+              ]
+            }
+         }
+      }
+   },
+   "firewall": {
+      "modify": {
+         "LOAD_BALANCE": {
+            "description":"LOAD_BALANCE",
+            "rule": {
+              "2499": {
+                 "action":"accept",
+                 "protocol":"all",
+                 "source": {
+                    "address":"10.2.0.0/24"
+                 },
+                 "destination": {
+                   "address": "10.0.0.0/8"
+                 }
+              },
+               "2500": {
+                  "action":"modify",
+                  "modify": {
+                     "table":"5"
+                  },
+                  "protocol":"all",
+                  "source": {
+                     "address":"10.2.0.0/24"
+                  }
+               }
+            }
+         }
+      }
+   },
+   "protocols": {
+      "static": {
+         "table": {
+            "5": {
+               "route": {
+                  "0.0.0.0/0": {
+                     "next-hop": {
+                        "192.168.18.1":"''"
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
